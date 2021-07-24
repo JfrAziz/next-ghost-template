@@ -9,15 +9,14 @@ import Layout from '@/components/layout'
 import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api'
 import PostTitle from '@/components/post-title'
 import Head from 'next/head'
-import { CMS_NAME } from '@/lib/constants'
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post, morePosts }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout preview={preview}>
+    <Layout>
       <Container>
         {router.isFallback ? (
           <PostTitle>Loading…</PostTitle>
@@ -26,7 +25,7 @@ export default function Post({ post, morePosts, preview }) {
             <article>
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  {post.title} | Next.js Blog Example with
                 </title>
                 <meta property="og:image" content={post.feature_image} />
               </Head>
@@ -47,11 +46,10 @@ export default function Post({ post, morePosts, preview }) {
   )
 }
 
-export async function getStaticProps({ params, preview = null }) {
-  const { post, morePosts } = await getPostAndMorePosts(params.slug, preview)
+export async function getStaticProps({ params }) {
+  const { post, morePosts } = await getPostAndMorePosts(params.slug)
   return {
     props: {
-      preview,
       post,
       morePosts: morePosts || [],
     },
