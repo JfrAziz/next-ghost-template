@@ -7,7 +7,6 @@ import PostHeader from '@/components/post-header'
 import SectionSeparator from '@/components/section-separator'
 import Layout from '@/components/layout'
 import { getAllPostsWithSlug, getPostAndMorePosts } from '@/lib/api'
-import PostTitle from '@/components/post-title'
 import Head from 'next/head'
 
 export default function Post({ post, morePosts }) {
@@ -19,7 +18,7 @@ export default function Post({ post, morePosts }) {
     <Layout>
       <Container>
         {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
+          <span>Loading…</span>
         ) : (
           <>
             <article>
@@ -47,12 +46,17 @@ export default function Post({ post, morePosts }) {
 }
 
 export async function getStaticProps({ params }) {
-  const { post, morePosts } = await getPostAndMorePosts(params.slug)
-  return {
-    props: {
-      post,
-      morePosts: morePosts || [],
-    },
+  try {
+    const { post, morePosts } = await getPostAndMorePosts(params.slug)
+    return {
+      props: {
+        post,
+        morePosts: morePosts || [],
+      },
+      revalidate: 60
+    }
+  } catch (error) {
+    return { notFound: true, revalidate: 60 }
   }
 }
 
