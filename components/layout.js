@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Meta />
-      <div className="m-auto max-w-screen-lg min-h-screen">
+      <div className="min-h-screen">
         <main>{children}</main>
       </div>
     </>

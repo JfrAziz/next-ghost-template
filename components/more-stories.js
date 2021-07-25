@@ -7,13 +7,13 @@ export default function MoreStories({ posts }) {
         More Stories
       </h2>
       <div className="mb-32">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <PostPreview
-            key={post.slug}
+            key={index}
             title={post.title}
             date={post.published_at}
             slug={post.slug}
-            excerpt={post.excerpt}
+            excerpt={post.custom_excerpt}
           />
         ))}
       </div>

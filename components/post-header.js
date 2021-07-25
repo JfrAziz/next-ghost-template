@@ -1,7 +1,12 @@
-import Avatar from './avatar'
-import Date from './date'
-import CoverImage from './cover-image'
-import PostTitle from './post-title'
+import Avatar from "./avatar";
+import Date from "./date";
+import CoverImage from "./cover-image";
+
+const PostTitle = ({ children }) => (
+  <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none mt-16 mb-12 text-center md:text-left">
+    {children}
+  </h1>
+);
 
 export default function PostHeader({ title, coverImage, date, author }) {
   return (
@@ -19,5 +24,5 @@ export default function PostHeader({ title, coverImage, date, author }) {
         </div>
       </div>
     </>
-  )
+  );
 }

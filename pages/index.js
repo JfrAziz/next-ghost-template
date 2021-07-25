@@ -4,17 +4,13 @@ import HeroPost from '@/components/hero-post'
 import Intro from '@/components/intro'
 import Layout from '@/components/layout'
 import { getAllPostsForHome } from '@/lib/api'
-import Head from 'next/head'
 
-export default function Index({ allPosts }) {
+export default function Index({ allPosts, meta }) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
-        <Head>
-          <title>Next.js Blog Example with Ghost</title>
-        </Head>
         <Container>
           <Intro />
           {heroPost && (
@@ -24,7 +20,7 @@ export default function Index({ allPosts }) {
               date={heroPost.published_at}
               author={heroPost.primary_author}
               slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
+              excerpt={heroPost.custom_excerpt}
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
@@ -36,7 +32,8 @@ export default function Index({ allPosts }) {
 
 export async function getStaticProps() {
   const allPosts = (await getAllPostsForHome()) || []
+  const meta = allPosts.meta
   return {
-    props: { allPosts },
+    props: { allPosts, meta },
   }
 }

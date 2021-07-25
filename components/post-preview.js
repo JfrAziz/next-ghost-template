@@ -1,12 +1,7 @@
-import Date from './date'
-import Link from 'next/link'
+import Date from "./date";
+import Link from "next/link";
 
-export default function PostPreview({
-  title,
-  date,
-  excerpt,
-  slug,
-}) {
+export default function PostPreview({ title, date, excerpt, slug }) {
   return (
     <div className="border-b-2 mb-2">
       <h3 className="text-2xl mb-3 leading-snug">
@@ -19,5 +14,5 @@ export default function PostPreview({
       </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
     </div>
-  )
+  );
 }
