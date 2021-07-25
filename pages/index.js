@@ -1,13 +1,13 @@
-import Container from '@/components/container'
-import MoreStories from '@/components/more-stories'
-import HeroPost from '@/components/hero-post'
-import Intro from '@/components/intro'
-import Layout from '@/components/layout'
-import { getAllPostsForHome } from '@/lib/api'
+import Container from "@/components/container";
+import HeroPost from "@/components/hero-post";
+import MorePost from "@/components/more-post";
+import Intro from "@/components/intro";
+import Layout from "@/components/layout";
+import { getAllPostsForHome } from "@/lib/api";
 
 export default function Index({ allPosts, meta }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+  const heroPost = allPosts[0];
+  const morePosts = allPosts.slice(1);
   return (
     <>
       <Layout>
@@ -23,17 +23,17 @@ export default function Index({ allPosts, meta }) {
               excerpt={heroPost.custom_excerpt}
             />
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {morePosts.length > 0 && <MorePost posts={morePosts} meta={meta} />}
         </Container>
       </Layout>
     </>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const allPosts = (await getAllPostsForHome()) || []
-  const meta = allPosts.meta
+  const allPosts = (await getAllPostsForHome()) || [];
+  const meta = allPosts.meta;
   return {
     props: { allPosts, meta },
-  }
+  };
 }

@@ -20,7 +20,7 @@ export default function Post({ post, morePosts }) {
           <span>Loading…</span>
         ) : (
           <>
-            <article>
+            <article className="border-b-2 border-accent-2 pb-28 mb-24">
               <PostMeta
                 title={post.title}
                 description={post.custom_excerpt}
@@ -34,7 +34,6 @@ export default function Post({ post, morePosts }) {
               />
               <PostBody content={post.html} />
             </article>
-            <hr className="border-accent-2 mt-28 mb-24" />
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
           </>
         )}
