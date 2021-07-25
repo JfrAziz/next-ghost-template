@@ -3,16 +3,18 @@ import HeroPost from "@/components/hero-post";
 import MorePost from "@/components/more-post";
 import Intro from "@/components/intro";
 import Layout from "@/components/layout";
-import { getAllPostsForHome } from "@/lib/api";
+import { getAllPostsForHome, getAllSettings } from "@/lib/api";
+import Meta from "@/components/meta";
 
-export default function Index({ allPosts, meta }) {
+export default function Index({ allPosts, postMeta, settings }) {
   const heroPost = allPosts[0];
   const morePosts = allPosts.slice(1);
   return (
     <>
+      <Meta settings={settings} />
       <Layout>
         <Container>
-          <Intro />
+          <Intro title={settings.title} description={settings.description} />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
@@ -23,7 +25,9 @@ export default function Index({ allPosts, meta }) {
               excerpt={heroPost.custom_excerpt}
             />
           )}
-          {morePosts.length > 0 && <MorePost posts={morePosts} meta={meta} />}
+          {morePosts.length > 0 && (
+            <MorePost posts={morePosts} meta={postMeta} />
+          )}
         </Container>
       </Layout>
     </>
@@ -32,8 +36,10 @@ export default function Index({ allPosts, meta }) {
 
 export async function getStaticProps() {
   const allPosts = (await getAllPostsForHome()) || [];
-  const meta = allPosts.meta;
+  const settings = await getAllSettings();
+  console.log(settings)
+  const postMeta = allPosts.meta;
   return {
-    props: { allPosts, meta },
+    props: { allPosts, postMeta, settings },
   };
 }

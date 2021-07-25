@@ -1,4 +1,4 @@
-import { getAllPostsForHome, getAllPostsWithSlug, getPostAndMorePosts } from "@/lib/api";
+import { getAllPostsForHome, getAllPostsWithSlug, getAllSettings, getPostAndMorePosts } from "@/lib/api";
 
 export default async function handler(req, res) {
   const ghost = req?.query?.ghost
@@ -12,6 +12,9 @@ export default async function handler(req, res) {
       break
     case 'getPostAndMorePosts':
       data = await getPostAndMorePosts("welcome")
+      break
+    case 'getAllSettings':
+      data = await getAllSettings()
       break
     default:
       data = await getAllPostsForHome()
