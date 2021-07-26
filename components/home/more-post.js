@@ -1,28 +1,26 @@
-import { getAllPostsForHome } from "@/lib/api";
-import { useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import PostPreview from "./post-preview";
+import { useState } from "react"
+import InfiniteScroll from "react-infinite-scroll-component"
+import PostPreview from "@/components/post-preview"
 
 export default function MorePost(props) {
-  const [posts, setPosts] = useState(props.posts);
+  const [posts, setPosts] = useState(props.posts)
   const [meta, setMeta] = useState(props.meta)
 
+  const getPostFromAPI = async (page = 1) => {
+    const res = await fetch(`/api/v1/post?page=${page}`)
+    return await res.json()
+  }
+
   const getMorePost = async () => {
-    const newPost = await getAllPostsForHome(meta.pagination.next)
-    // get meta from array and delete it before concat to post
-    const newMeta = newPost.meta
-    delete newPost.meta
-    
+    const result = await getPostFromAPI(meta.pagination.next)
     // set new post and new meta
-    setPosts((post) => post.concat(newPost))
-    setMeta(newMeta)
+    setPosts((post) => post.concat(result.posts))
+    setMeta(result.meta)
   }
 
   return (
     <section>
-      <h2 className="mb-8 text-5xl font-bold tracking-tighter leading-tight">
-        More Posts
-      </h2>
+      <h2 className="mb-8 text-5xl font-bold tracking-tighter leading-tight">More Posts</h2>
       <div className="mb-32">
         <InfiniteScroll
           dataLength={posts.length}
@@ -43,5 +41,5 @@ export default function MorePost(props) {
         </InfiniteScroll>
       </div>
     </section>
-  );
+  )
 }

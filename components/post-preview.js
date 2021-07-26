@@ -1,5 +1,5 @@
-import Date from "./date";
-import Link from "next/link";
+import Date from "@/components/misc/date"
+import Link from "next/link"
 
 export default function PostPreview({ title, date, excerpt, slug }) {
   return (
@@ -14,5 +14,5 @@ export default function PostPreview({ title, date, excerpt, slug }) {
       </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
     </div>
-  );
+  )
 }

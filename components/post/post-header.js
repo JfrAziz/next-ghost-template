@@ -1,6 +1,6 @@
-import Avatar from "./avatar";
-import Date from "./date";
-import CoverImage from "./cover-image";
+import Avatar from "../misc/avatar";
+import Date from "../misc/date";
+import CoverImage from "../cover-image";
 
 const PostTitle = ({ children }) => (
   <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none mt-16 mb-12 text-center md:text-left">

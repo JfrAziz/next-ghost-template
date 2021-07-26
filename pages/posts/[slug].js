@@ -1,17 +1,17 @@
-import { useRouter } from "next/router";
-import ErrorPage from "next/error";
-import Container from "@/components/container";
-import PostBody from "@/components/post-body";
-import MoreStories from "@/components/more-stories";
-import PostHeader from "@/components/post-header";
-import Layout from "@/components/layout";
-import { getAllPostsWithSlug, getPostAndMorePosts } from "@/lib/api";
-import PostMeta from "@/components/post-meta";
+import { useRouter } from "next/router"
+import ErrorPage from "next/error"
+import Container from "@/components/container"
+import PostBody from "@/components/post/post-body"
+import PostMore from "@/components/post/post-more"
+import PostHeader from "@/components/post/post-header"
+import Layout from "@/components/layout"
+import Meta from "@/components/meta/meta"
+import { getAllPostsWithSlug, getAllSettings, getPostAndMorePosts } from "@/lib/api"
 
-export default function Post({ post, morePosts }) {
-  const router = useRouter();
+export default function Post({ post, morePosts, settings }) {
+  const router = useRouter()
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />;
+    return <ErrorPage statusCode={404} />
   }
   return (
     <Layout>
@@ -21,11 +21,7 @@ export default function Post({ post, morePosts }) {
         ) : (
           <>
             <article className="border-b-2 border-accent-2 pb-28 mb-24">
-              <PostMeta
-                title={post.title}
-                description={post.custom_excerpt}
-                image={post.feature_image}
-              />
+              <Meta article={post} settings={settings} />
               <PostHeader
                 title={post.title}
                 coverImage={post.feature_image}
@@ -34,33 +30,35 @@ export default function Post({ post, morePosts }) {
               />
               <PostBody content={post.html} />
             </article>
-            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+            {morePosts.length > 0 && <PostMore posts={morePosts} />}
           </>
         )}
       </Container>
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps({ params }) {
   try {
-    const { post, morePosts } = await getPostAndMorePosts(params.slug);
+    const { post, morePosts } = await getPostAndMorePosts(params.slug)
+    const settings = await getAllSettings()
     return {
       props: {
         post,
         morePosts: morePosts || [],
+        settings,
       },
       revalidate: 60,
-    };
+    }
   } catch (error) {
-    return { notFound: true, revalidate: 60 };
+    return { notFound: true, revalidate: 60 }
   }
 }
 
 export async function getStaticPaths() {
-  const allPosts = (await getAllPostsWithSlug()) || [];
+  const allPosts = (await getAllPostsWithSlug()) || []
   return {
     paths: allPosts.map((post) => `/posts/${post.slug}`),
     fallback: true,
-  };
+  }
 }

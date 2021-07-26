@@ -1,10 +1,10 @@
 import Container from "@/components/container";
-import HeroPost from "@/components/hero-post";
-import MorePost from "@/components/more-post";
+import HeroPost from "@/components/home/hero-post";
+import MorePost from "@/components/home/more-post";
 import Intro from "@/components/intro";
 import Layout from "@/components/layout";
 import { getAllPostsForHome, getAllSettings } from "@/lib/api";
-import Meta from "@/components/meta";
+import Meta from "@/components/meta/meta";
 
 export default function Index({ allPosts, postMeta, settings }) {
   const heroPost = allPosts[0];
@@ -37,7 +37,7 @@ export default function Index({ allPosts, postMeta, settings }) {
 export async function getStaticProps() {
   const allPosts = (await getAllPostsForHome()) || [];
   const settings = await getAllSettings();
-  console.log(settings)
+  
   const postMeta = allPosts.meta;
   return {
     props: { allPosts, postMeta, settings },

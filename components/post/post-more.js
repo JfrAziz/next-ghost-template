@@ -1,6 +1,6 @@
-import PostPreview from './post-preview'
+import PostPreview from "@/components/post-preview"
 
-export default function MoreStories({ posts }) {
+export default function PostMore({ posts }) {
   return (
     <section>
       <h2 className="mb-8 text-5xl font-bold tracking-tighter leading-tight">
