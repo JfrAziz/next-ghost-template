@@ -1,14 +1,14 @@
-import Container from "@/components/container";
-import HeroPost from "@/components/home/hero-post";
-import MorePost from "@/components/home/more-post";
-import Intro from "@/components/intro";
-import Layout from "@/components/layout";
-import { getAllPostsForHome, getAllSettings } from "@/lib/api";
-import Meta from "@/components/meta/meta";
+import Container from "@/components/layouts/container"
+import HeroPost from "@/components/home/hero-post"
+import MorePost from "@/components/home/more-post"
+import Intro from "@/components/home/intro"
+import Layout from "@/components/layouts/layout"
+import Meta from "@/components/meta/meta"
+import { getAllPostsForHome, getAllSettings } from "@/lib/api"
 
 export default function Index({ allPosts, postMeta, settings }) {
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
+  const heroPost = allPosts[0]
+  const morePosts = allPosts.slice(1)
   return (
     <>
       <Meta settings={settings} />
@@ -25,21 +25,19 @@ export default function Index({ allPosts, postMeta, settings }) {
               excerpt={heroPost.custom_excerpt}
             />
           )}
-          {morePosts.length > 0 && (
-            <MorePost posts={morePosts} meta={postMeta} />
-          )}
+          {morePosts.length > 0 && <MorePost posts={morePosts} meta={postMeta} />}
         </Container>
       </Layout>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  const allPosts = (await getAllPostsForHome()) || [];
-  const settings = await getAllSettings();
-  
-  const postMeta = allPosts.meta;
+  const allPosts = (await getAllPostsForHome()) || []
+  const settings = await getAllSettings()
+
+  const postMeta = allPosts.meta
   return {
     props: { allPosts, postMeta, settings },
-  };
+  }
 }

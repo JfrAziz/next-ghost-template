@@ -1,12 +1,12 @@
-import Avatar from "../misc/avatar";
-import Date from "../misc/date";
-import CoverImage from "../cover-image";
+import Avatar from "@/components/misc/avatar"
+import Date from "@/components/misc/date"
+import CoverImage from "@/components/cover-image"
 
 const PostTitle = ({ children }) => (
   <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none mt-16 mb-12 text-center md:text-left">
     {children}
   </h1>
-);
+)
 
 export default function PostHeader({ title, coverImage, date, author }) {
   return (
@@ -24,5 +24,5 @@ export default function PostHeader({ title, coverImage, date, author }) {
         </div>
       </div>
     </>
-  );
+  )
 }
