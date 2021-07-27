@@ -20,8 +20,7 @@ export default function MorePost(props) {
 
   return (
     <section>
-      <h2 className="mb-8 text-5xl font-bold tracking-tighter leading-tight">More Posts</h2>
-      <div className="mb-32">
+      <div className="mb-16">
         <InfiniteScroll
           dataLength={posts.length}
           next={getMorePost}

@@ -68,6 +68,7 @@ export default function Meta(props) {
 
   return (
     <Head>
+      <link rel="icon" href={siteIcon}/>
       <link rel="apple-touch-icon" sizes="180x180" href={siteIcon} />
       <link rel="icon" type="image/png" sizes="32x32" href={siteIcon} />
       <link rel="icon" type="image/png" sizes="16x16" href={siteIcon} />

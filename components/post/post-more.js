@@ -6,7 +6,7 @@ export default function PostMore({ posts }) {
       <h2 className="mb-8 text-5xl font-bold tracking-tighter leading-tight">
         More Stories
       </h2>
-      <div className="mb-32">
+      <div className="mb-16">
         {posts.map((post, index) => (
           <PostPreview
             key={index}
