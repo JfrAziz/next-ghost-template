@@ -1,6 +1,0 @@
-Sitemap: /api/v1/sitemap
-
-User-agent: *
-Allow: /*
-
-Disallow: /api/*
