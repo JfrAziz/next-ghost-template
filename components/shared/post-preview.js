@@ -3,7 +3,6 @@ import Link from "next/link"
 
 export default function PostPreview({ post }) {
   const { title, published_at, custom_excerpt, slug, reading_time } = post
-  console.log(post)
   return (
     <div className="border-b my-4">
       <h3 className="text-2xl mb-3 leading-snug">

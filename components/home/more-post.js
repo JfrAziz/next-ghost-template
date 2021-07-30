@@ -10,7 +10,6 @@ export default function MorePost(props) {
     const res = await fetch(`/api/v1/post?page=${page}`)
     return await res.json()
   }
-  console.log(posts)
 
   const getMorePost = async () => {
     const result = await getPostFromAPI(meta.pagination.next)
