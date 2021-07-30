@@ -17,13 +17,8 @@ export default function Post({ post, morePosts, settings }) {
     <>
       <Meta article={post} settings={settings} />
       <Layout settings={settings}>
-        <article className="border-b-2 border-accent-2 pb-28 mb-24">
-          <PostHeader
-            title={post.title}
-            coverImage={post.feature_image}
-            date={post.published_at}
-            author={post.primary_author}
-          />
+        <article className="border-b border-accent-2 pb-16 mb-16">
+          <PostHeader post={post} />
           <PostBody content={post.html} />
         </article>
         {morePosts.length > 0 && <PostMore posts={morePosts} />}

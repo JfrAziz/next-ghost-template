@@ -13,16 +13,7 @@ export default function Index({ allPosts, postMeta, settings }) {
       <Meta settings={settings} />
       <Layout settings={settings}>
         <Intro title={settings.title} description={settings.description} />
-        {heroPost && (
-          <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.feature_image}
-            date={heroPost.published_at}
-            author={heroPost.primary_author}
-            slug={heroPost.slug}
-            excerpt={heroPost.custom_excerpt}
-          />
-        )}
+        {heroPost && <HeroPost post={heroPost} />}
         {morePosts.length > 0 && <MorePost posts={morePosts} meta={postMeta} />}
       </Layout>
     </>

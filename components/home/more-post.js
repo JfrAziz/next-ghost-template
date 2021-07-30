@@ -10,6 +10,7 @@ export default function MorePost(props) {
     const res = await fetch(`/api/v1/post?page=${page}`)
     return await res.json()
   }
+  console.log(posts)
 
   const getMorePost = async () => {
     const result = await getPostFromAPI(meta.pagination.next)
@@ -35,6 +36,7 @@ export default function MorePost(props) {
               date={post.published_at}
               slug={post.slug}
               excerpt={post.custom_excerpt}
+              reading_time={post.reading_time}
             />
           ))}
         </InfiniteScroll>

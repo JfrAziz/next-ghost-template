@@ -1,27 +1,29 @@
-import Avatar from "@/components/misc/avatar"
 import Date from "@/components/misc/date"
 import CoverImage from "@/components/cover-image"
 
 const PostTitle = ({ children }) => (
-  <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none mt-16 mb-12 text-center md:text-left">
+  <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none my-8 text-left">
     {children}
   </h1>
 )
 
-export default function PostHeader({ title, coverImage, date, author }) {
+export default function PostHeader({ post }) {
+  const { title, feature_image, published_at, primary_author, excerpt, reading_time } = post
+  console.log(post)
   return (
     <>
-      <PostTitle>{title}</PostTitle>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} url={coverImage} width={2000} height={1216} />
+      <div className="max-w-2xl mx-auto mb-12">
+        <PostTitle>{title}</PostTitle>
+        <div className="border-b pb-8 mb-4 text-xl leading-relaxed">
+          <span>{excerpt}</span>
+        </div>
+        <div className="">
+          <span className="border-r pr-2 italic">Published <Date dateString={published_at} /> by {primary_author.name}</span>
+          <span className="pl-2">{ reading_time } minutes</span>
+        </div>
       </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-6">
-          <Avatar name={author.name} picture={author.profile_image} />
-        </div>
-        <div className="mb-6 text-lg">
-          <Date dateString={date} />
-        </div>
+      <div className="mb-8 md:mb-16 sm:mx-0">
+        <CoverImage title={title} url={feature_image} width={2000} height={1216} />
       </div>
     </>
   )

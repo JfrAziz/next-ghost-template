@@ -10,7 +10,7 @@ export default function Layout({ settings, children }) {
       <main className="min-h-screen max-w-screen-lg mx-auto px-5">
         <div className="container">{children}</div>
       </main>
-      <Footer/>
+      <Footer settings={settings}/>
     </>
   )
 }
