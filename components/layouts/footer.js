@@ -4,7 +4,6 @@ import { Facebook, Twitter } from "../icons"
 const Footer = ({ settings }) => {
   const logo = settings?.icon || settings.defaultSettings.siteIcon
   const { twitter, facebook } = settings
-  console.log(settings)
   return (
     <footer class="text-gray-600 body-font border-t">
       <div class="max-w-screen-lg px-5 py-4 mx-auto flex items-center sm:flex-row flex-col">

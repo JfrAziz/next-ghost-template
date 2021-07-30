@@ -1,5 +1,5 @@
 import Date from "@/components/misc/date"
-import CoverImage from "@/components/cover-image"
+import CoverImage from "@/components/shared/cover-image"
 
 const PostTitle = ({ children }) => (
   <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none my-8 text-left">
@@ -9,7 +9,6 @@ const PostTitle = ({ children }) => (
 
 export default function PostHeader({ post }) {
   const { title, feature_image, published_at, primary_author, excerpt, reading_time } = post
-  console.log(post)
   return (
     <>
       <div className="max-w-2xl mx-auto mb-12">

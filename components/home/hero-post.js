@@ -1,6 +1,6 @@
 import Avatar from "@/components/misc/avatar"
 import Date from "@/components/misc/date"
-import CoverImage from "@/components/cover-image"
+import CoverImage from "@/components/shared/cover-image"
 import Link from "next/link"
 
 export default function HeroPost({ post }) {
