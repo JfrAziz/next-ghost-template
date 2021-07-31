@@ -1,0 +1,46 @@
+.post_body {
+
+  h2, h3 {
+    @apply mt-12 mb-4 leading-snug
+  }
+
+  h2 {
+    @apply text-3xl
+  }
+
+  h3 {
+    @apply text-2xl
+  }
+
+  p {
+    @apply my-6 text-lg text-gray-900 leading-relaxed
+  }
+
+  a {
+    @apply text-purple-600 hover:underline
+  }
+
+  blockquote {
+    @apply border-l-4 border-green-500 italic my-8 pl-4 leading-relaxed md:leading-loose text-xl md:pl-8
+  }
+
+  strong {
+    @apply text-gray-700
+  }
+
+  ol {
+    @apply list-decimal
+  }
+
+  ul li::marker {
+    content: "⚡";
+  }
+
+  li {
+    @apply my-2 ml-5 pl-2 text-lg
+  }
+
+  hr {
+    @apply border
+  }
+}

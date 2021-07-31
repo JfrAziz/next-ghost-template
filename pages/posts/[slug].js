@@ -19,7 +19,7 @@ export default function Post({ post, morePosts, settings }) {
       <Layout settings={settings}>
         <article className="border-b border-accent-2 pb-16 mb-16">
           <PostHeader post={post} />
-          <PostBody content={post.html} />
+          <PostBody content={post.html} settings={settings} />
         </article>
         {morePosts.length > 0 && <PostMore posts={morePosts} />}
       </Layout>

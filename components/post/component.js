@@ -1,60 +1,20 @@
+import Image from "next/image"
 import Link from "next/link"
-import styles from "./component.module.css"
 
-export const A = ({ href, children }) => {
+// modify post url from url that has same origin from ghost api
+export const A = ({ href, ghostUrl, children }) => {
+  const linkUrl = new URL(href)
+  const url = linkUrl.origin == new URL(ghostUrl).origin ? `/posts${linkUrl.pathname}` : linkUrl.href
   return (
-    <Link href={href}>
-      <a className="text-purple-600 hover:underline">{children}</a>
+    <Link href={url}>
+      <a>{children}</a>
     </Link>
   )
 }
 
-export const P = ({ children }) => {
-  return <p className="my-6 text-lg text-gray-900 leading-relaxed">{children}</p>
-}
-
-export const HR = () => <hr className="border"></hr>
-
-export const H2 = ({ children, id }) => {
+export const Img = (props) => {
+  const { src, alt, width, height } = props
   return (
-    <h2 id={id} className="text-3xl mt-12 mb-4 leading-snug">
-      {children}
-    </h2>
+    <Image src={src} alt={alt || "blog photos"} width={width} height={height}/>
   )
 }
-
-export const H3 = ({ children, id }) => {
-  return (
-    <h3 id={id} className="text-2xl mt-8 mb-4 leading-snug">
-      {children}
-    </h3>
-  )
-}
-
-export const Ol = ({ children }) => {
-  return <ol className="list-decimal">{ children }</ol>
-}
-
-export const Ul = ({ children }) => {
-  return <ul className={styles.custom_list}>{ children }</ul>
-}
-
-export const Li = ({ children }) => {
-  return <li className="my-2 ml-5 pl-2 text-lg">{children}</li>
-}
-
-export const Strong = ({ children }) => {
-  return (
-    <strong className="text-gray-700">{ children }</strong>
-  )
-}
-
-export const BlockQuote = ({ children }) => {
-  return (
-    <blockquote className={styles.blockquote}>
-      {children}
-    </blockquote>
-  )
-}
-
-

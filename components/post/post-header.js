@@ -2,7 +2,7 @@ import Date from "@/components/misc/date"
 import CoverImage from "@/components/shared/cover-image"
 
 const PostTitle = ({ children }) => (
-  <h1 className="text-6xl font-bold tracking-tighter leading-tight md:leading-none my-8 text-left">
+  <h1 className="text-6xl font-bold tracking-tighter leading-tight my-8 text-left">
     {children}
   </h1>
 )
