@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 const Header = ({ settings }) => {
   const logo = settings?.icon || settings.defaultSettings.siteIcon
@@ -7,7 +8,7 @@ const Header = ({ settings }) => {
       <div className="max-w-screen-lg mx-auto px-5 py-3 flex justify-between">
         <Link href="/">
           <a>
-            <img src={logo} alt="website-icon" aria-label="website-icon" width={36} heigh={36} />
+            <Image src={logo} alt="website-icon" aria-label="website-icon" width={36} height={36} />
           </a>
         </Link>
       </div>

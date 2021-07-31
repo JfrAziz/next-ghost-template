@@ -1,9 +1,9 @@
-import markdownStyles from "./markdown-styles.module.css"
+import Normalize from "@/lib/normalize"
 
 export default function PostBody({ content }) {
   return (
     <div className="max-w-2xl mx-auto">
-      <div className={markdownStyles["markdown"]} dangerouslySetInnerHTML={{ __html: content }} />
+      {Normalize(content)}
     </div>
   )
 }
