@@ -1,20 +1,76 @@
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import styles from "./component.module.scss"
+import ReactDOMServer from "react-dom/server"
+import { getPostLink } from "@/lib/helpers/url"
+import { base64IMG } from "@/components/misc/base64-image"
 
-// modify post url from url that has same origin from ghost api
+/**
+ *
+ * Image optimizer for blog
+ *
+ * @param {{string, string}} {src, alt}
+ * @returns
+ */
+export const Img = ({ src, alt }) => {
+  return (
+    <div className={styles.image_container}>
+      <Image
+        src={src}
+        alt={alt || "blog photos"}
+        layout="fill"
+        placeholder="blur"
+        blurDataURL={base64IMG}
+      />
+    </div>
+  )
+}
+
+/**
+ *
+ * iframe for embed video like youtube or etec
+ * use 16:9 aspect ration
+ *
+ * @param {{string}} {src}
+ * @returns
+ */
+export const Iframe = ({ src }) => {
+  return (
+    <div className={styles.iframe_wrapper}>
+      <iframe className="" src={src}></iframe>
+    </div>
+  )
+}
+
+/**
+ *
+ * run third party js, like widget or something. it's run but still error
+ * because sometime third party script create a new html element, so
+ * React Server and Client does'n match
+ *
+ * @param {{string}} {src}
+ * @returns
+ */
+export const ThirdPartyScript = ({ src }) => {
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: ReactDOMServer.renderToString(<script src={src}></script>),
+      }}
+    />
+  )
+}
+
+/**
+ *
+ * @param {{string, string, JSX.Element}} {href, ghostUrl, children}
+ * @returns
+ */
 export const A = ({ href, ghostUrl, children }) => {
-  const linkUrl = new URL(href)
-  const url = linkUrl.origin == new URL(ghostUrl).origin ? `/posts${linkUrl.pathname}` : linkUrl.href
+  const url = getPostLink(href, ghostUrl)
   return (
     <Link href={url}>
       <a>{children}</a>
     </Link>
-  )
-}
-
-export const Img = (props) => {
-  const { src, alt, width, height } = props
-  return (
-    <Image src={src} alt={alt || "blog photos"} width={width} height={height}/>
   )
 }
