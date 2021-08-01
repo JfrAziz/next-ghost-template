@@ -5,7 +5,7 @@ import styles from "./component.module.scss"
 import ReactDOMServer from "react-dom/server"
 import { getPostLink } from "@/lib/helpers/url"
 import { base64IMG } from "@/components/misc/base64-image"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 // prism js language
 import "prismjs/components/prism-java"
@@ -46,36 +46,66 @@ export const Img = ({ src, alt }) => {
 export const Iframe = ({ src }) => {
   return (
     <div className={styles.iframe_wrapper}>
-      <iframe className="" src={src}></iframe>
+      <iframe src={src} />
     </div>
   )
 }
 
 /**
  *
- * run third party js, like widget or something. it's run but still error
- * because sometime third party script create a new html element, so
- * React Server and Client does'n match
+ * run third party js, like widget or something in iframe.
+ * caveats, its not responsive. so if you change screen size
+ * iframe height not change
  *
  * @param  props
  * @returns
  */
 export const ThirdPartyScript = ({ src }) => {
-  const Script = () => <script src={src} />
-  return (
-    <div
-      dangerouslySetInnerHTML={{
-        __html:ReactDOMServer.renderToString(<Script/>),
-      }}
-    />
-  )
+  const iframeRef = useRef(null)
+
+  const updateIframe = () => {
+    let doc = iframeRef.current.document
+    if (iframeRef.current.contentDocument) doc = iframeRef.current.contentDocument
+    else if (iframeRef.current.contentWindow) doc = iframeRef.current.contentWindow.document
+
+    const resizeScript = `onload="window.frameElement.style.height=document.body.scrollHeight + 'px'"`
+    const iframeHtml = `
+    <html>
+
+    <head>
+      <base target="_parent">
+      <style>
+        * {
+          padding: 0;
+          margin: 0
+        }
+      </style>
+    </head>
+
+    <body ${resizeScript}>
+      <script src=${src}></script>
+    </body>
+
+    </html>
+    `
+
+    doc.open()
+    doc.writeln(iframeHtml)
+    doc.close()
+  }
+
+  useEffect(() => {
+    updateIframe()
+  })
+
+  return <iframe className="w-full p-0 m-0" ref={iframeRef} />
 }
 /**
- * 
+ *
  * syntax highlighting with prism js
- * 
- * @param props 
- * @returns 
+ *
+ * @param props
+ * @returns
  */
 export const Code = ({ className, children }) => {
   useEffect(() => {
