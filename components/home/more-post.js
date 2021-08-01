@@ -1,6 +1,11 @@
 import { useState } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import PostPreview from "@/components/shared/post-preview"
+import { PostPreviewSkeleton } from "@/components/skeleton"
+
+const EndMessage = () => {
+  return <span className="italic">Nothing more to show</span>
+}
 
 export default function MorePost(props) {
   const [posts, setPosts] = useState(props.posts)
@@ -25,8 +30,8 @@ export default function MorePost(props) {
           dataLength={posts.length}
           next={getMorePost}
           hasMore={meta.pagination.next}
-          loader={<h3> Loading...</h3>}
-          endMessage={<h4>Nothing more to show</h4>}
+          loader={<PostPreviewSkeleton />}
+          endMessage={<EndMessage />}
         >
           {posts.map((post, index) => (
             <PostPreview key={index} post={post} />

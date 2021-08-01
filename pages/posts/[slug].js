@@ -6,12 +6,13 @@ import PostHeader from "@/components/post/post-header"
 import Layout from "@/components/layouts/layout"
 import Meta from "@/components/meta/meta"
 import { getAllPostsWithSlug, getAllSettings, getPostAndMorePosts } from "@/lib/api"
+import { PostSkeleton } from "@/components/skeleton"
 
 export default function Post({ post, morePosts, settings }) {
   const router = useRouter()
 
   if (!router.isFallback && !post?.slug) return <ErrorPage statusCode={404} />
-  if (router.isFallback) return <span>Loading…</span>
+  if (router.isFallback) return <PostSkeleton/>
 
   return (
     <>

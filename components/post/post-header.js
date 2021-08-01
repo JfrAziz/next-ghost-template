@@ -14,7 +14,7 @@ export default function PostHeader({ post }) {
         <div className="border-b pb-8 mb-4 text-xl leading-relaxed">
           <span>{excerpt}</span>
         </div>
-        <div className="">
+        <div>
           <span className="border-r pr-2 italic">
             Published <Date dateString={published_at} /> by {primary_author.name}
           </span>
