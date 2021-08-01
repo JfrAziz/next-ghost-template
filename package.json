@@ -6,9 +6,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^11.0.1",
     "@tryghost/content-api": "^1.5.10",
     "classnames": "2.3.1",
-    "date-fns": "2.23.0",
+    "dayjs": "^1.10.6",
     "html-react-parser": "^1.2.7",
     "lazysizes": "^5.3.2",
     "next": "latest",
