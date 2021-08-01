@@ -2,9 +2,7 @@ import Date from "@/components/misc/date"
 import CoverImage from "@/components/shared/cover-image"
 
 const PostTitle = ({ children }) => (
-  <h1 className="text-6xl font-bold tracking-tighter leading-tight my-8 text-left">
-    {children}
-  </h1>
+  <h1 className="text-6xl font-bold tracking-tighter leading-tight my-8 text-left">{children}</h1>
 )
 
 export default function PostHeader({ post }) {
@@ -17,13 +15,17 @@ export default function PostHeader({ post }) {
           <span>{excerpt}</span>
         </div>
         <div className="">
-          <span className="border-r pr-2 italic">Published <Date dateString={published_at} /> by {primary_author.name}</span>
-          <span className="pl-2">{ reading_time } minutes</span>
+          <span className="border-r pr-2 italic">
+            Published <Date dateString={published_at} /> by {primary_author.name}
+          </span>
+          <span className="pl-2">{reading_time} minutes</span>
         </div>
       </div>
-      <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} url={feature_image} width={2000} height={1216} />
-      </div>
+      {feature_image && (
+        <div className="mb-8 md:mb-16 sm:mx-0">
+          <CoverImage title={title} url={feature_image} width={2000} height={1216} />
+        </div>
+      )}
     </>
   )
 }

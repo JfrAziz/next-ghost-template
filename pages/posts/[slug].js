@@ -37,10 +37,10 @@ export async function getStaticProps({ params }) {
         morePosts: morePosts || [],
         settings,
       },
-      revalidate: 60,
+      revalidate: 1,
     }
   } catch (error) {
-    return { notFound: true, revalidate: 60 }
+    return { notFound: true, revalidate: 1 }
   }
 }
 

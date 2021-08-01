@@ -1,15 +1,24 @@
+import Prism from "prismjs"
 import Link from "next/link"
 import Image from "next/image"
 import styles from "./component.module.scss"
 import ReactDOMServer from "react-dom/server"
 import { getPostLink } from "@/lib/helpers/url"
 import { base64IMG } from "@/components/misc/base64-image"
+import { useEffect } from "react"
+
+// prism js language
+import "prismjs/components/prism-java"
+import "prismjs/components/prism-python"
+import "prismjs/components/prism-bash"
+import "prismjs/components/prism-yaml"
+import "prismjs/components/prism-json"
 
 /**
  *
  * Image optimizer for blog
  *
- * @param {{string, string}} {src, alt}
+ * @param props
  * @returns
  */
 export const Img = ({ src, alt }) => {
@@ -31,7 +40,7 @@ export const Img = ({ src, alt }) => {
  * iframe for embed video like youtube or etec
  * use 16:9 aspect ration
  *
- * @param {{string}} {src}
+ * @param props
  * @returns
  */
 export const Iframe = ({ src }) => {
@@ -48,7 +57,7 @@ export const Iframe = ({ src }) => {
  * because sometime third party script create a new html element, so
  * React Server and Client does'n match
  *
- * @param {{string}} {src}
+ * @param  props
  * @returns
  */
 export const ThirdPartyScript = ({ src }) => {
@@ -60,10 +69,23 @@ export const ThirdPartyScript = ({ src }) => {
     />
   )
 }
+/**
+ * 
+ * syntax highlighting with prism js
+ * 
+ * @param props 
+ * @returns 
+ */
+export const Code = ({ className, children }) => {
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
+  return <code className={className}>{children}</code>
+}
 
 /**
  *
- * @param {{string, string, JSX.Element}} {href, ghostUrl, children}
+ * @param  props
  * @returns
  */
 export const A = ({ href, ghostUrl, children }) => {

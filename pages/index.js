@@ -27,5 +27,6 @@ export async function getStaticProps() {
   const postMeta = allPosts.meta
   return {
     props: { allPosts, postMeta, settings },
+    revalidate: 1,
   }
 }
