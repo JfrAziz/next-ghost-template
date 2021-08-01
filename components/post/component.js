@@ -61,10 +61,11 @@ export const Iframe = ({ src }) => {
  * @returns
  */
 export const ThirdPartyScript = ({ src }) => {
+  const Script = () => <script src={src} />
   return (
     <div
       dangerouslySetInnerHTML={{
-        __html: ReactDOMServer.renderToString(<script src={src}></script>),
+        __html:ReactDOMServer.renderToString(<Script/>),
       }}
     />
   )

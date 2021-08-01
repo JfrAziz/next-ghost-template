@@ -9,17 +9,7 @@ export function PostSkeleton() {
         </div>
       </div>
       <div className="max-w-2xl mx-auto mt-5">
-        <div className="mb-4">
-          <Skeleton height={50} />
-        </div>
-        <div className="mb-4 border-b pb-8">
-          <Skeleton height={150} />
-        </div>
-        <div className="mb-8">
-          <Skeleton height={28} />
-        </div>
-        <Skeleton height={100} />
-        <Skeleton height={100} />
+        <Skeleton height={100} count={5} />
       </div>
     </>
   )
