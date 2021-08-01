@@ -6,7 +6,7 @@
  code[class*="language-"],
 pre[class*="language-"] {
 	color: #393A34;
-	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+	font-family: 'Fira Code', monospace;
 	direction: ltr;
 	text-align: left;
 	white-space: pre;
@@ -118,4 +118,8 @@ pre[class*="language-"] {
 
 .token.italic {
 	font-style: italic;
+}
+
+.copy-to-clipboard-button {
+	@apply rounded-sm bg-gray-400 text-white p-2 !important;
 }
