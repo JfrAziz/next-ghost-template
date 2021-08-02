@@ -23,6 +23,7 @@ const Footer = ({ settings }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500"
+              aria-label="twitter"
             >
               <Twitter />
             </a>
@@ -33,6 +34,7 @@ const Footer = ({ settings }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="ml-3 text-gray-500"
+              aria-label="facebook"
             >
               <Facebook />
             </a>
