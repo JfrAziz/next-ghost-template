@@ -18,12 +18,4 @@ module.exports = withBundleAnalyzer({
       ...(process.env.IMAGE_DOMAINS || "").split(","),
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: "/robots.txt",
-        destination: "/api/v1/robots",
-      },
-    ]
-  },
 })
