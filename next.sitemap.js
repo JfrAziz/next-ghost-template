@@ -18,5 +18,8 @@ module.exports = {
         disallow: "/api",
       },
     ],
+    additionalSitemaps: [
+      `${siteUrl}/api/v1/sitemap`,
+    ],
   },
 }
