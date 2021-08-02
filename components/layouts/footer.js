@@ -9,7 +9,7 @@ const Footer = ({ settings }) => {
     <footer className="text-gray-600 body-font border-t">
       <div className="max-w-screen-lg px-5 py-4 mx-auto flex items-center sm:flex-row flex-col">
         <Link href="/">
-          <a>
+          <a className="flex">
             <Image src={logo} alt="website-icon" aria-label="website-icon" width={36} height={36} />
           </a>
         </Link>

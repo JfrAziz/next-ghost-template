@@ -7,7 +7,7 @@ const Header = ({ settings }) => {
     <header className="border-b">
       <div className="max-w-screen-lg mx-auto px-5 py-3 flex justify-between">
         <Link href="/">
-          <a>
+          <a className="flex">
             <Image src={logo} alt="website-icon" aria-label="website-icon" width={36} height={36} />
           </a>
         </Link>

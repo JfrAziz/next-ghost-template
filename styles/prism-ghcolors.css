@@ -3,79 +3,83 @@
  * Inspired by Github syntax coloring
  */
 
- code[class*="language-"],
+code[class*="language-"],
 pre[class*="language-"] {
-	color: #393A34;
-	font-family: 'Fira Code', monospace;
-	direction: ltr;
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	font-size: .9em;
-	line-height: 1.2em;
+  color: #393a34;
+  font-family: "Fira Code", monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.9em;
+  line-height: 1.2em;
 
-	-moz-tab-size: 4;
-	-o-tab-size: 4;
-	tab-size: 4;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
 
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
 }
 
 pre > code[class*="language-"] {
-	font-size: 1em;
+  font-size: 1em;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	background: #b3d4fc;
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  background: #b3d4fc;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	background: #b3d4fc;
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  background: #b3d4fc;
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: 1em;
-	overflow: auto;
-	border: 1px solid #dddddd;
-	background-color: white;
+  padding: 1em;
+  overflow: auto;
+  border: 1px solid #dddddd;
+  background-color: white;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .2em;
-	padding-top: 1px;
-	padding-bottom: 1px;
-	background: #f8f8f8;
-	border: 1px solid #dddddd;
+  padding: 0.2em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background: #f8f8f8;
+  border: 1px solid #dddddd;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #999988;
-	font-style: italic;
+  color: #999988;
+  font-style: italic;
 }
 
 .token.namespace {
-	opacity: .7;
+  opacity: 0.7;
 }
 
 .token.string,
 .token.attr-value {
-	color: #e3116c;
+  color: #e3116c;
 }
 
 .token.punctuation,
 .token.operator {
-	color: #393A34; /* no highlight */
+  color: #393a34; /* no highlight */
 }
 
 .token.entity,
@@ -88,38 +92,77 @@ pre[class*="language-"] {
 .token.property,
 .token.regex,
 .token.inserted {
-	color: #36acaa;
+  color: #36acaa;
 }
 
 .token.atrule,
 .token.keyword,
 .token.attr-name,
 .language-autohotkey .token.selector {
-	color: #00a4db;
+  color: #00a4db;
 }
 
 .token.function,
 .token.deleted,
 .language-autohotkey .token.tag {
-	color: #9a050f;
+  color: #9a050f;
 }
 
 .token.tag,
 .token.selector,
 .language-autohotkey .token.keyword {
-	color: #00009f;
+  color: #00009f;
 }
 
 .token.important,
 .token.function,
 .token.bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .token.italic {
-	font-style: italic;
+  font-style: italic;
 }
 
 .copy-to-clipboard-button {
-	@apply rounded-sm bg-gray-400 text-white p-2 !important;
+  @apply rounded-sm bg-gray-400 text-white p-2 !important;
+}
+
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 0.75rem;
+  left: -3.8em;
+  width: 3em; /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  color: #1b1f234d;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
 }
