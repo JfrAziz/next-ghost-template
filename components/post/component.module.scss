@@ -14,6 +14,11 @@
 
   p {
     @apply my-6 text-lg text-gray-900 leading-relaxed;
+
+    code {
+      @apply text-sm bg-green-300 p-1 rounded-sm;
+      font-family: 'Fira Code', monospace !important;
+    }
   }
 
   a {

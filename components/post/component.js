@@ -109,11 +109,15 @@ export const ThirdPartyScript = ({ src }) => {
  * @param props
  * @returns
  */
-export const Code = ({ className, children }) => {
+export const Code = ({ children }) => {
   useEffect(() => {
     Prism.highlightAll()
   }, [])
-  return <code className={className}>{children}</code>
+  return (
+    <div className="line-numbers">
+      <pre>{children}</pre>
+    </div>
+  )
 }
 
 /**

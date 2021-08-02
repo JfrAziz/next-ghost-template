@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
           <link data-href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Lato&family=Open+Sans&display=swap" />
         </Head>
-        <body className="line-numbers">
+        <body>
           <Main />
           <NextScript />
         </body>
